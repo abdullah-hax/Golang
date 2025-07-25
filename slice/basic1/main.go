@@ -34,29 +34,30 @@ func nillSlice(){
 	fmt.Println("Slice with initial values : ", slice2)
 }
 
-func sliceFromArray(){
-	arr := [6]int{0, 1, 2, 3, 4, 5}
-	slice := arr[1:4]
-	fmt.Println("Slice from array : ", slice)
+func copyOneSliceToAnother(){
+	var src = []int{0, 1, 2, 3, 4, 5}
+	var dest = make([]int, len(src)) 
+	copy(dest, src)
+	fmt.Println("Copied slice : ", dest)
 }
 
-func appendElementsToSlice(){
-	slice := []int{1, 2, 3}
-	slice = append(slice, 4, 5) 
-	var anotherSlice = append(slice, 10, 20, 30)
-	fmt.Println("Appended main slice : ", slice) // [1, 2, 3, 4, 5]
-	fmt.Println("Appended another slice : ", anotherSlice) // [1, 2, 3, 4, 5, 10, 20, 30]
+func multiDSlice(){
+	matrix := [][]int{
+		{1, 2, 3},
+		{4, 5, 6},
+		{7, 8, 9},
+	}
 
-	// Note : nill slice eo value append kora jabe
-
+	fmt.Println("Multidimensional Slice : ", matrix)
 }
 
 func main(){
 	normalMethod()
 	makeMethod()
 	nillSlice()
-	sliceFromArray()
-	appendElementsToSlice()
+	copyOneSliceToAnother()
+	multiDSlice()
+
 }
 
 // array & slice er output [] er vetor hoi  ✅

@@ -2,48 +2,78 @@ package main
 
 import "fmt"
 
-func copyOneSliceToAnother(){
-	var src = []int{0, 1, 2, 3, 4, 5}
-	var dest = make([]int, len(src)) 
-	copy(dest, src)
-	fmt.Println("Copied slice : ", dest)
+func sliceFromArray() {
+	arr := [6]int{0, 1, 2, 3, 4, 5}
+	slice := arr[1:4]
+	fmt.Println("Slice from array : ", slice)
 }
 
-func multiDSlice(){
-	matrix := [][]int{
-		{1, 2, 3},
-		{4, 5, 6},
-		{7, 8, 9},
-	}
+func appendElementsToSlice() {
+	slice := []int{1, 2, 3}
+	slice = append(slice, 4, 5)
+	var anotherSlice = append(slice, 10, 20, 30)
+	fmt.Println("Appended main slice : ", slice)           // [1, 2, 3, 4, 5]
+	fmt.Println("Appended another slice : ", anotherSlice) // [1, 2, 3, 4, 5, 10, 20, 30]
 
-	fmt.Println("Multidimensional Slice : ", matrix)
+	// Note : nill slice eo value append kora jabe
+
 }
 
-func removeElements(slice []int){
+func removeElements(slice []int) {
 	slice = append(slice[:2], slice[5:]...)
 	fmt.Println("Slice after removal : ", slice)
 }
 
-func iterateOver(slice []int){
-	for i, v := range slice{
+func iterateOver(slice []int) {
+	for i, v := range slice {
 		fmt.Printf("index : %d, value : %d\n", i, v)
 	}
-	
+
 }
 
-func main(){
+func benefitOfSlice() {
+
+	arr := [6]int{0, 1, 2, 3, 4, 5}             // number array
+	arr2 := [3]string{"go", "slice", "closure"} // string array
+	arr3 := [0]int{}                            // number array
+
+	arr[2] = 16
+	arr2[2] = "vogus"
+
+	fmt.Println(arr)
+	fmt.Println(arr2, arr3)
+
+	// arr er index value modify kora jai, empty value neya jai
+	/*
+
+	   slice e xtra ja ache :
+	   	=> size e varible use kra jai
+	     	=> append() die add or remove kora jai
+	      	=> onkgulo value k eksate neya jai  (slice form array topic)
+	         ( fmt.Println(slice[2:5]),
+	   	   arr te value gulo alada vabe nite hoi jmn
+	   	   fmt.Println(str[2], str[3], str[4]) / fmt.Println(arr[2], arr[3], arr[4])
+
+
+	*/
+
+}
+
+func main() {
 	var slice = []int{0, 1, 2, 3, 4, 5}
-	copyOneSliceToAnother()
-	multiDSlice()
+
+	sliceFromArray()
+	appendElementsToSlice()
 	removeElements(slice)
 	iterateOver(slice)
+	benefitOfSlice()
 }
 
 // for _, v := range myslice {
 //     fmt.Println(v)
 // }
 
-/* 
+/*
 
 func pass(slc []int)
  pass(slc)  // it is slice
