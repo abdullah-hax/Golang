@@ -95,5 +95,5 @@ func main() {
 // number slice or string slice  -> loop ghurie onkgulo number or onkgulo string input nite parbe ( fmt.Scan(&num[i]) / fmt.Scan(&str[i]) )   [ variable use kora jabe ✅ ]
 
 // number = onkgulo digit mile ekta value
-// string = onkgulo character mile ekat value
+// string = onkgulo character mile ekta value
 // array or slice = onkgulo string value or number value er somosti

@@ -4,14 +4,14 @@ import "fmt"
 
 func main() {
 	arr := [6]int{0, 1, 2, 3, 4, 5}   // number array
-	str := [3]string{"go", "slice", "closure"}  // string array
-	str2 := [0]int{}   // number array
+	arr2 := [3]string{"go", "slice", "closure"}  // string array
+	arr3 := [0]int{}   // number array
 
 	arr[2] = 16
-	str[2] = "vogus"
+	arr2[2] = "vogus"
 
 	fmt.Println(arr)
-	fmt.Println(str, str2)
+	fmt.Println(arr2, arr3)
 
 }
 
