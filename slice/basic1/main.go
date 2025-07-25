@@ -27,7 +27,7 @@ func makeMethod(){
 	fmt.Println("capacity : ", cap(slice2))
 }
 
-func slice(){
+func nillSlice(){
 	slice := []int{}
 	slice2 := []int{1, 4, 7}
 	fmt.Println("Emplty slice : ",slice)
@@ -42,14 +42,19 @@ func sliceFromArray(){
 
 func appendElementsToSlice(){
 	slice := []int{1, 2, 3}
-	slice = append(slice, 4, 5) // ekhane different variable o neya jabe
-	fmt.Println("Appended slice : ", slice) // [1, 2, 3, 4, 5]
+	slice = append(slice, 4, 5) 
+	var anotherSlice = append(slice, 10, 20, 30)
+	fmt.Println("Appended main slice : ", slice) // [1, 2, 3, 4, 5]
+	fmt.Println("Appended another slice : ", anotherSlice) // [1, 2, 3, 4, 5, 10, 20, 30]
+
+	// Note : nill slice eo value append kora jabe
+
 }
 
 func main(){
 	normalMethod()
 	makeMethod()
-	slice()
+	nillSlice()
 	sliceFromArray()
 	appendElementsToSlice()
 }

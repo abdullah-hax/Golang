@@ -19,12 +19,12 @@ func main() {
 /*
 
 slice e xtra ja ache :
-   => append() die add or remove kora jai
-   => onkgulo value k eksate neya jai
+	=> size e varible use kra jai	
+  	=> append() die add or remove kora jai
+   	=> onkgulo value k eksate neya jai
       ( fmt.Println(slice[2:5]), 
 	   arr te value gulo alada vabe nite hoi jmn
 	   fmt.Println(str[2], str[3], str[4]) / fmt.Println(arr[2], arr[3], arr[4])
-   =>
 
 
 */

@@ -49,6 +49,17 @@ func length() {
 	fmt.Println(string(runes2))
 }
 
+func modify(){
+	str := "hello"
+	runes := []rune(str)
+
+	// str[0] = 'k'  ❌  string cann't be modified, you should use rune/bute to modify any index
+	runes[0] = 'k'
+	fmt.Printf("%c\n", str[0])
+	fmt.Printf("%c\n", runes[0])
+	fmt.Println(string(runes))
+}
+
 func main() {
 
 	fmt.Println("First part : ")
@@ -56,5 +67,8 @@ func main() {
 	
 	fmt.Println("Second part : ")
 	length()
+
+	fmt.Println("Third part : ")
+	modify()
 
 }

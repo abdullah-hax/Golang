@@ -87,12 +87,13 @@ func main() {
 
 // In C , string = char type array
 // In Go, string = onkgulo character er somosti but not array , int , float e jmn onkgulo digit thake tmni ekane onkgulo character thake ,
-// go er string eo index ache but modify krte hole rune or byte e convert krte hbe.
-
-
+// go er string eo index ache but specefic character modify krte hole rune or byte e convert krte hbe.
 
 // num   -> ei varible e 1ta number input nite parbe (fmt.Scan(&num))
 // str     -> ei varible e 1ta string input nite parbe (fmt.Scan(&str))
 // number array or string array  -> loop ghurie onkgulo number or onkgulo string input nite parbe ( fmt.Scan(&num[i]) / fmt.Scan(&str[i]) )  [ variable use kora jabena ❌ ]
 // number slice or string slice  -> loop ghurie onkgulo number or onkgulo string input nite parbe ( fmt.Scan(&num[i]) / fmt.Scan(&str[i]) )   [ variable use kora jabe ✅ ]
 
+// number = onkgulo digit mile ekta value
+// string = onkgulo character mile ekat value
+// array or slice = onkgulo string value or number value er somosti
