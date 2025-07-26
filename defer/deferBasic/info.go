@@ -1,4 +1,4 @@
-package defer1
+package main
 
 /*
 
