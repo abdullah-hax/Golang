@@ -72,3 +72,9 @@ func main() {
 	modify()
 
 }
+
+
+/* Disadvantage of string 
+     -> str modify kora jaina
+	 -> character length 1 byte er besi hle real string length paoa jaina
+*/
