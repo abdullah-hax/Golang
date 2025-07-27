@@ -86,6 +86,7 @@ func intStringRuneAndByteSlice2() {
 		fmt.Scanf("%c", &slice4[i])
 	}
 	fmt.Println(string(slice4))
+
 	fmt.Scanf("\n")
 }
 
@@ -167,7 +168,7 @@ Disadvantages of array :
 
 
 Advantages of slice :
-	-> 3rd bracket[] er vetor var use kora jai
+	-> size hisebe var use kora jai
 	-> append() die add or remove kora jai
    	-> onkgulo value k eksate neya jai
       ( fmt.Println(slice[2:5]), 
