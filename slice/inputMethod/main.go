@@ -134,7 +134,20 @@ func main() {
 
 
 
-/* Disadvantage of array :
+/* 
+  ## array er index modify kora jai
+
+Disadvantages of array :
     -> 3rd bracket[] er vetor var use kora jaina
 	-> khali rakha jaina
+
+
+Advantages of slice :
+	-> 3rd bracket[] er vetor var use kora jai
+	-> append() die add or remove kora jai
+   	-> onkgulo value k eksate neya jai
+      ( fmt.Println(slice[2:5]), 
+	   arr te value gulo alada vabe nite hoi jmn
+	   fmt.Println(str[2], str[3], str[4]) / fmt.Println(arr[2], arr[3], arr[4])
+
 */
