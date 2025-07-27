@@ -2,7 +2,44 @@ package main
 
 import "fmt"
 
-func intAndStringSlice() {
+func intStringRuneAndByteSlice(){
+/* 	hello := make([]string, 3) this means hello will take 3 strings
+	hello := make([]int, 3) this means hello will take 3 int numbers
+	hello := make([]byte, 3) this means hello will take 3 ascii characters
+	hello := make([]rune, 3) this means hello will take 3 unicode characters
+*/
+
+	hello := make([]string, 3)
+	hello[0] = "world"
+	hello[1] = "world"
+	hello[2] = "world"
+
+	hello2 := make([]int, 3)
+	hello2[0] = 1234
+	hello2[1] = 1234
+	hello2[2] = 1234
+
+	hello3 := make([]byte, 3)
+	hello3[0] = 'a'
+	hello3[1] = '3'
+	hello3[2] = 'z'
+
+	hello4 := make([]rune, 3)
+	hello4[0] = 'a'
+	hello4[1] = '3'
+	hello4[2] = '👍'
+
+	fmt.Println(hello)
+	fmt.Println(hello2)
+
+	fmt.Printf("%c\n", hello3)
+	fmt.Printf("%c%c%c\n", hello3[0], hello3[1],hello3[2])
+	fmt.Printf("%c\n", hello4)
+	fmt.Printf(string(hello4))
+
+}
+
+func intStringRuneAndByteSlice2() {
 	fmt.Println("Taking input using slice (take 4 input) :")
 	var slice1 = make([]int, 4)
 	var slice2 = make([]string, 4)
@@ -29,7 +66,27 @@ func intAndStringSlice() {
 	for i := 0; i < test; i++ {
 		fmt.Scan(&slice[i])
 	}
-	fmt.Println(slice, "Ans : slice")
+	fmt.Println(slice)
+
+
+
+	fmt.Scanf("\n")
+
+	var slice3 = make([]byte, 3)
+	var slice4 = make([]rune, 3)
+
+	for i := 0; i < 3; i++{
+		fmt.Scanf("%c", &slice3[i])  // byte & rune e inpu neyar smy must %c dite hbe
+	}
+	fmt.Println(string(slice3))
+
+	fmt.Scanf("\n")
+	
+	for i := 0; i < 3; i++{
+		fmt.Scanf("%c", &slice4[i])
+	}
+	fmt.Println(string(slice4))
+	fmt.Scanf("\n")
 }
 
 func intAndStringArray() {
@@ -76,47 +133,14 @@ func inputOneValueWithVarible() {
 	fmt.Println(num)
 }
 
-func xtra(){
-/* 	hello := make([]string, 3) this means hello will take 3 strings
-	hello := make([]int, 3) this means hello will take 3 int numbers
-	hello := make([]byte, 3) this means hello will take 3 ascii characters
-	hello := make([]rune, 3) this means hello will take 3 unicode characters
-*/
-
-	hello := make([]string, 3)
-	hello[0] = "world"
-	hello[1] = "world"
-	hello[2] = "world"
-
-	hello2 := make([]int, 3)
-	hello2[0] = 1234
-	hello2[1] = 1234
-	hello2[2] = 1234
-
-	hello3 := make([]byte, 3)
-	hello3[0] = 'a'
-	hello3[1] = '3'
-	hello3[2] = 'z'
-
-	hello4 := make([]rune, 3)
-	hello4[0] = 'a'
-	hello4[1] = '3'
-	hello4[2] = '👍'
-
-	fmt.Println(hello)
-	fmt.Println(hello2)
-	fmt.Printf("%c%c%c\n", hello3[0], hello3[1],hello3[2])
-	fmt.Printf("%c\n", hello4)
-
-}
 
 func main() {
-	intAndStringSlice()
+	intStringRuneAndByteSlice()
+	intStringRuneAndByteSlice2()
 	intAndStringArray()
 	inputOneValueWithArrayOrSlice()
 	inputOneValueWithVarible()
 
-	xtra()
 }
 
 // In C , string = char type array

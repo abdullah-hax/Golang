@@ -30,7 +30,7 @@ func main() {
 	}
 }
 
-/* Alternative (More right code but lengthy)
+/*  Alternative (More right code but lengthy)
 
 package main
 
@@ -62,6 +62,7 @@ func main() {
 	} else {
 		fmt.Println("Friendship")
 	}
-} */
+} 
+*/
 
 // For print the string : 	fmt.Println(string(str))
