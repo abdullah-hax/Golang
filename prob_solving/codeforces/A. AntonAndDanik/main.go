@@ -62,7 +62,7 @@ func main() {
 	} else {
 		fmt.Println("Friendship")
 	}
-} 
+}
 */
 
 // For print the string : 	fmt.Println(string(str))
