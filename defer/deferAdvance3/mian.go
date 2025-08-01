@@ -20,9 +20,9 @@ func calculate() (result int) {
 
 	defer p(result)
 
-	result = 10
-
 	defer fmt.Println("print1", result)
+
+	result = 10
 
 	fmt.Println("second", result)
 
