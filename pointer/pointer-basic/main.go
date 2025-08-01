@@ -21,3 +21,5 @@ func main() {
 	*p = 300          // vlaue at address p = value at address x 
 	fmt.Println("x = ", x)
 }
+
+
