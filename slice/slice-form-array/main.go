@@ -1,3 +1,9 @@
+/*
+
+	Slice lec abr dko 1h 13min theke
+
+*/
+
 package main
 
 import "fmt"
