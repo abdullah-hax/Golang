@@ -9,7 +9,7 @@ func main() {
 	var arr = [4]int{3, 4, 5, 6}
 
 	fmt.Println(arr)
-	fmt.Println(arr2)
+	fmt.Println(arr2)    
 	fmt.Println(arr3)
 }
 
