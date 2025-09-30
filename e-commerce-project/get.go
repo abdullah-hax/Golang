@@ -25,7 +25,7 @@ func aboutHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func getProducts(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Origin", "*") //  যেকোনো frontend থেকে call দাও , আমি এলাওড
 	w.Header().Set("Content-Type", "aplicatoin/json")
 
 	if r.Method != "GET" { // http.MethodGet
