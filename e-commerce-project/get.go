@@ -38,11 +38,52 @@ func getProducts(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func createProduct(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "POST")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-type")
+	w.Header().Set("Content-Type", "aplicatoin/json")
+
+	if r.Method != "POST" {
+		http.Error(w, "Plz give me POST request", 400)
+		return
+	}
+
+	/*
+
+		jdi frontend pathai tahle r.Body er vetor ei 4ta info ache.
+		r.Body => description, imageUrl, price, title
+
+		1. take body information from r.Body
+		2. create an instance using struct Product with the body information
+		3. append the instance into productList
+
+	*/
+
+	var newProduct Product
+	decoder := json.NewDecoder(r.Body)
+	err := decoder.Decode(&newProduct)
+
+	if err != nil {
+		fmt.Println(err)
+		http.Error(w, "Plz give me a valid json", 400)
+		return
+	}
+
+	newProduct.Id = len(productList) + 1
+	productList = append(productList, newProduct)
+
+	w.WriteHeader(201)
+	encoder := json.NewEncoder(w)
+	encoder.Encode(productList)
+}
+
 func main() {
 	mux := http.NewServeMux()                // router
 	mux.HandleFunc("/hello", helloHandler)   // route, helloHandler = handler
 	mux.HandleFunc("/about", aboutHandler)   // aboutHandler = handler
 	mux.HandleFunc("/products", getProducts) // getProducts = handler
+	mux.HandleFunc("/create-products", createProduct)
 	fmt.Println("Server running on : 8080")
 
 	err := http.ListenAndServe(":8080", mux)
@@ -74,26 +115,26 @@ func init() {
 		Price:       100,
 		ImgUrl:      "https://cdn.imgbin.com/0/7/16/3d-cartoon-fruit-happy-yellow-banana-cartoon-illustration-SjZHDscz.jpg",
 	}
-	prd4 := Product{
-		Id:          4,
-		Title:       "Apple",
-		Description: "I like apple",
-		Price:       100,
-		ImgUrl:      "https://www.vhv.rs/dpng/d/537-5373862_apple-clipart-png-apple-clipart-transparent-png.png",
-	}
-	prd5 := Product{
-		Id:          5,
-		Title:       "Jack Fruit",
-		Description: "I like jackfruit",
-		Price:       100,
-		ImgUrl:      "https://png.pngtree.com/png-vector/20240722/ourlarge/pngtree-a-beautiful-jackfruit-with-leaf-on-transparent-png-image_13109531.png",
-	}
+	// prd4 := Product{
+	// 	Id:          4,
+	// 	Title:       "Apple",
+	// 	Description: "I like apple",
+	// 	Price:       100,
+	// 	ImgUrl:      "https://www.vhv.rs/dpng/d/537-5373862_apple-clipart-png-apple-clipart-transparent-png.png",
+	// }
+	// prd5 := Product{
+	// 	Id:          5,
+	// 	Title:       "Jack Fruit",
+	// 	Description: "I like jackfruit",
+	// 	Price:       100,
+	// 	ImgUrl:      "https://png.pngtree.com/png-vector/20240722/ourlarge/pngtree-a-beautiful-jackfruit-with-leaf-on-transparent-png-image_13109531.png",
+	// }
 
 	productList = append(productList, prd1)
 	productList = append(productList, prd2)
 	productList = append(productList, prd3)
-	productList = append(productList, prd4)
-	productList = append(productList, prd5)
+	// productList = append(productList, prd4)
+	// productList = append(productList, prd5)
 }
 
 /*
