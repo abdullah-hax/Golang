@@ -1,3 +1,4 @@
+
 package main
 
 import (
@@ -9,7 +10,7 @@ import (
 type Product struct {
 	Id          int     `json:"id"`
 	Title       string  `json:"title"`
-	Description string  `json:"description" `
+	Description string  `json:"description"`
 	Price       float64 `json:"price"`
 	ImgUrl      string  `json:"imageUrl"`
 }
@@ -25,24 +26,23 @@ func aboutHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func getProducts(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "*") //  যেকোনো frontend থেকে call দাও , আমি এলাওড
-	w.Header().Set("Content-Type", "aplicatoin/json")
+	
+	handleCorsError(w)
+	allowPreFlightReq(w,r)
 
 	if r.Method != "GET" { // http.MethodGet
 		http.Error(w, "plz give me GET request", 400)
 		return
 	}
 
-	encoder := json.NewEncoder(w)
-	encoder.Encode(productList) // encoder die product list k encode krlam , jehetu encoder k w die banano hoyece tai encoded product list ti FE er kache cole jabe
+	sendData(w, productList, 200)
 
 }
 
 func createProduct(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-	w.Header().Set("Access-Control-Allow-Methods", "POST")
-	w.Header().Set("Access-Control-Allow-Headers", "Content-type")
-	w.Header().Set("Content-Type", "aplicatoin/json")
+
+	handleCorsError(w)
+	allowPreFlightReq(w,r)
 
 	if r.Method != "POST" {
 		http.Error(w, "Plz give me POST request", 400)
@@ -73,9 +73,27 @@ func createProduct(w http.ResponseWriter, r *http.Request) {
 	newProduct.Id = len(productList) + 1
 	productList = append(productList, newProduct)
 
-	w.WriteHeader(201)
+	sendData(w, newProduct, 201)
+}
+
+func handleCorsError(w http.ResponseWriter){
+	w.Header().Set("Access-Control-Allow-Origin", "*") //  যেকোনো frontend থেকে call দাও , আমি এলাওড
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Abdullah, shafi")
+	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, PUT, PATCH, DELETE, OPTIONS")
+
+}
+
+func allowPreFlightReq(w http.ResponseWriter, r *http.Request){
+		if r.Method == "OPTIONS" { // option successful holei post req krbe , post req i krbe karon FE e leka ache  "const response = await api.get('/products');"
+		w.WriteHeader(201)
+	}
+}
+
+func sendData(w http.ResponseWriter, data interface{}, statusCode int ){
+	w.WriteHeader(statusCode)
 	encoder := json.NewEncoder(w)
-	encoder.Encode(productList)
+	encoder.Encode(data)
 }
 
 func main() {
@@ -137,25 +155,3 @@ func init() {
 	// productList = append(productList, prd5)
 }
 
-/*
-
-	variable er name small hole private, ei main package chara ar keo use krte parbena. built in json package egulo use krte parbena
-					 capital hole public, onno package o ei variable use krte parbe.
-
-
-*/
-
-/*
-
-	[] => list
-	{} => object
-
-	JSON => Java Script Object Notation
-
-*/
-/*
-
-	1 bar run krle 1 ta process create hoi jeta 3000 port dokol kore
-	2nd bar run krle abar process create hoi & 3000 port dokol krte gie dke already in use.
-
-*/
