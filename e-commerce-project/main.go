@@ -14,7 +14,7 @@ type Product struct {
 	ImgUrl      string  `json:"imageUrl"`
 }
 
-var productList []Product // int type er slice e onkgulo int variable thake, struct product typer slice e onkgulo struct product type er variable thakbe
+var productList []Product // int type er slice e onkgulo int variable thake, struct product typer slice e onkgulo struct product type er variable thakbe. (onkgulo product lgbe tai slice neya hoyece)
 
 func helloHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "hello world")

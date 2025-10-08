@@ -1,4 +1,3 @@
-
 package main
 
 import (
@@ -26,23 +25,24 @@ func aboutHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func getProducts(w http.ResponseWriter, r *http.Request) {
-	
+
 	handleCorsError(w)
-	allowPreFlightReq(w,r)
+	allowPreFlightReq(w, r)
 
 	if r.Method != "GET" { // http.MethodGet
 		http.Error(w, "plz give me GET request", 400)
 		return
 	}
 
-	sendData(w, productList, 200)
+	w.WriteHeader(200)
+	sendData(w, productList)
 
 }
 
 func createProduct(w http.ResponseWriter, r *http.Request) {
 
 	handleCorsError(w)
-	allowPreFlightReq(w,r)
+	allowPreFlightReq(w, r)
 
 	if r.Method != "POST" {
 		http.Error(w, "Plz give me POST request", 400)
@@ -64,6 +64,8 @@ func createProduct(w http.ResponseWriter, r *http.Request) {
 	decoder := json.NewDecoder(r.Body)
 	err := decoder.Decode(&newProduct)
 
+	w.WriteHeader(200) // eta if er pore dile website e statusCode 200 count hbena , 400 tke jabe
+
 	if err != nil {
 		fmt.Println(err)
 		http.Error(w, "Plz give me a valid json", 400)
@@ -73,10 +75,10 @@ func createProduct(w http.ResponseWriter, r *http.Request) {
 	newProduct.Id = len(productList) + 1
 	productList = append(productList, newProduct)
 
-	sendData(w, newProduct, 201)
+	sendData(w, newProduct)
 }
 
-func handleCorsError(w http.ResponseWriter){
+func handleCorsError(w http.ResponseWriter) {
 	w.Header().Set("Access-Control-Allow-Origin", "*") //  যেকোনো frontend থেকে call দাও , আমি এলাওড
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Abdullah, shafi")
@@ -84,14 +86,14 @@ func handleCorsError(w http.ResponseWriter){
 
 }
 
-func allowPreFlightReq(w http.ResponseWriter, r *http.Request){
-		if r.Method == "OPTIONS" { // option successful holei post req krbe , post req i krbe karon FE e leka ache  "const response = await api.get('/products');"
+func allowPreFlightReq(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "OPTIONS" { // option successful holei post req krbe , post req i krbe karon FE e leka ache  "const response = await api.get('/products');"
 		w.WriteHeader(201)
 	}
 }
 
-func sendData(w http.ResponseWriter, data interface{}, statusCode int ){
-	w.WriteHeader(statusCode)
+func sendData(w http.ResponseWriter, data interface{}) {
+
 	encoder := json.NewEncoder(w)
 	encoder.Encode(data)
 }
@@ -133,25 +135,31 @@ func init() {
 		Price:       100,
 		ImgUrl:      "https://cdn.imgbin.com/0/7/16/3d-cartoon-fruit-happy-yellow-banana-cartoon-illustration-SjZHDscz.jpg",
 	}
-	// prd4 := Product{
-	// 	Id:          4,
-	// 	Title:       "Apple",
-	// 	Description: "I like apple",
-	// 	Price:       100,
-	// 	ImgUrl:      "https://www.vhv.rs/dpng/d/537-5373862_apple-clipart-png-apple-clipart-transparent-png.png",
-	// }
-	// prd5 := Product{
-	// 	Id:          5,
-	// 	Title:       "Jack Fruit",
-	// 	Description: "I like jackfruit",
-	// 	Price:       100,
-	// 	ImgUrl:      "https://png.pngtree.com/png-vector/20240722/ourlarge/pngtree-a-beautiful-jackfruit-with-leaf-on-transparent-png-image_13109531.png",
-	// }
+
+	// jackfruit img link : https://png.pngtree.com/png-vector/20240722/ourlarge/pngtree-a-beautiful-jackfruit-with-leaf-on-transparent-png-image_13109531.png
 
 	productList = append(productList, prd1)
 	productList = append(productList, prd2)
 	productList = append(productList, prd3)
-	// productList = append(productList, prd4)
-	// productList = append(productList, prd5)
+
 }
 
+/*
+
+
+	type Product struct {
+	Id          int
+	Title       string
+	Description string
+	Price       float64
+	ImgUrl      string
+	}
+
+	var Hello int => hello er vetor ekta int thakbe
+	var hello []int => hello er vetor onkgulo int thakbe
+
+	var hello Product => hello er vetor er ekta Product thakbe
+	var hello []Product => hello er vetor onkgulo Product thakbe
+
+
+*/
