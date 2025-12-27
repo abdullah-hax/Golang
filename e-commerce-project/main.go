@@ -8,13 +8,13 @@ import (
 
 type Product struct {
 	Id          int     `json:"id"`
-	Title       string  `json:"title"`
-	Description string  `json:"description"`
+	Title       string  `json:"title"`   // in go , small letter = private , only accessed in main package . capital letter = public
+	Description string  `json:"description"`  // description private hole json package cann't access it or not cann't see it
 	Price       float64 `json:"price"`
 	ImgUrl      string  `json:"imageUrl"`
 }
 
-var productList []Product // int type er slice e onkgulo int variable thake, struct product typer slice e onkgulo struct product type er variable thakbe. (onkgulo product lgbe tai slice neya hoyece)
+var productList []Product // int type er slice e onkgulo int variable thake, product typer slice e onkgulo product type er variable thakbe. (onkgulo product lgbe tai slice neya hoyece)
 
 func helloHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "hello world")
@@ -44,7 +44,7 @@ func getProducts(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func createProduct(w http.ResponseWriter, r *http.Request) {
+func createProducts(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	// w.Header().Set("Access-Control-Allow-Methods", "POST")
 	w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Abdullah, shafi") // headers e content-type,abdullah,shafi ache. so frontend ei 3ta die req krbe, ei 3ta k allow na krle cors error khabe.
@@ -91,11 +91,11 @@ func createProduct(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	mux := http.NewServeMux()                // router
-	mux.HandleFunc("/hello", helloHandler)   // route, helloHandler = handler
-	mux.HandleFunc("/about", aboutHandler)   // aboutHandler = handler
-	mux.HandleFunc("/products", getProducts) // getProducts = handler
-	mux.HandleFunc("/create-products", createProduct)
+	mux := http.NewServeMux()                // mux = router
+	mux.HandleFunc("/hello", helloHandler)   // helloHandler/aboutHandler/getProducts = handler function
+	mux.HandleFunc("/about", aboutHandler)   // /hello, /about, /products, /create-products = route, endpoint/API endpoint
+	mux.HandleFunc("/products", getProducts) 
+	mux.HandleFunc("/create-products", createProducts)
 	fmt.Println("Server running on : 8080")
 
 	err := http.ListenAndServe(":8080", mux)
